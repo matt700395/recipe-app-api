@@ -26,3 +26,10 @@ class AdminSiteTests(TestCase):
 
         self.assertContains(res, self.user.name)
         self.assertContains(res, self.user.email)
+
+    def test_user_page_change(self):
+        """Test that the user edit page works"""
+        url = reverse('admin:core_user_change', args=[self.user.id]) #reverse 다시 이해하기
+        res = self.client.get(url) # url에서 http를 가져옴?
+
+        self.assertEqual(res.status_code, 200) # 응답상태가 http response 200인지를 확인함
